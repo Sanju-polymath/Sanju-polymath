@@ -1,0 +1,13 @@
+# Source video folders (originals — web_videos/ has the compressed versions)
+Bliss circus/
+Echoes short list/
+Website portfolio/
+Hasiru dala, under privalgged kids project/
+Work shop for kids on theatre and arts/
+
+# Oversized source videos inside Sanjay portpholio
+Sanjay portpholio/Circus/*.MOV
+Sanjay portpholio/Circus/*.mov
+
+# Claude Code memory files
+.claude/

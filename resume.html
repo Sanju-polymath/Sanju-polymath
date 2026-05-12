@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sanjay Bharadwaj — CV</title>
+<style>
+  @page { size: A4; margin: 14mm 16mm; }
+  @page :first { margin: 0; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11pt;
+    color: #1a1a1a;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #111;
+    color: #fff;
+    padding: 32px 40px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 {
+    font-size: 34pt;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .header .tagline {
+    font-size: 9.5pt;
+    color: #c4922a;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .header .contact {
+    margin-top: 12px;
+    font-size: 9.5pt;
+    color: #aaa;
+    line-height: 1.9;
+  }
+  .header .contact a { color: #c4922a; text-decoration: none; }
+  .portrait {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 35% center;
+    border: 2px solid #c4922a;
+    flex-shrink: 0;
+  }
+
+  /* ── BODY ── */
+  .body { padding: 26px 40px 30px; }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border: 0.5pt solid #e8e0d0;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 16px 10px;
+    border-right: 0.5pt solid #d8cfc0;
+    background: #f5f0e8;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 24pt;
+    font-weight: 700;
+    color: #c4922a;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #444;
+    margin-top: 5px;
+    font-weight: 600;
+  }
+
+  /* Section */
+  .section { margin-bottom: 14px; }
+  .sec-title {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c4922a;
+    padding-bottom: 4px;
+    border-bottom: 0.5pt solid #c4922a;
+    margin-bottom: 8px;
+  }
+
+  /* Profile */
+  .profile p {
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  /* Experience */
+  .exp-list { display: flex; flex-direction: column; gap: 6px; }
+  .exp-item { display: flex; gap: 16px; align-items: baseline; }
+  .exp-year {
+    font-size: 9pt;
+    color: #aaa;
+    min-width: 58px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .exp-role { font-size: 10.5pt; font-weight: 600; color: #111; }
+  .exp-org  { font-size: 10.5pt; color: #666; }
+
+  /* Credits */
+  .credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  thead th {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    text-align: left;
+    padding: 0 8px 5px 0;
+    border-bottom: 0.5pt solid #ddd;
+  }
+  td {
+    padding: 3.5px 8px 3.5px 0;
+    vertical-align: top;
+    border-bottom: 0.25pt solid #f2f2f2;
+    line-height: 1.4;
+  }
+  td:last-child { padding-right: 0; }
+  td strong { font-weight: 600; color: #111; }
+
+  /* Skills */
+  .skills-grid { display: flex; flex-direction: column; gap: 7px; }
+  .skill-row { display: flex; gap: 14px; align-items: baseline; }
+  .skill-lbl {
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #aaa;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .skill-val { font-size: 10pt; color: #444; }
+
+  /* References */
+  .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .ref-name { font-size: 10.5pt; font-weight: 600; }
+  .ref-role { font-size: 9.5pt; color: #888; }
+  .ref-email { font-size: 9.5pt; color: #c4922a; }
+
+  /* Divider between sections */
+  .divider { border: none; border-top: 0.25pt solid #eee; margin: 4px 0 16px; }
+</style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+    <div>
+      <h1>Sanjay Bharadwaj</h1>
+      <div class="tagline">Theatre &nbsp;·&nbsp; Live Events &nbsp;·&nbsp; Installation &nbsp;·&nbsp; Set Design</div>
+      <div class="contact">
+        workforsanjay@gmail.com &nbsp;|&nbsp; +91 97423 93803 &nbsp;|&nbsp; Bangalore, India
+      </div>
+    </div>
+    <img class="portrait" src="Sanjay potrate photo.JPG" alt="Sanjay Bharadwaj" />
+  </div>
+
+  <div class="body">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years in Theatre &amp; Live Events</div></div>
+      <div class="stat"><div class="stat-num">350+</div><div class="stat-label">Live Performances</div></div>
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Productions Managed</div></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="section profile">
+      <div class="sec-title">Profile</div>
+      <p>
+        Ten years across theatre, live performance, festivals, residencies, and installations —
+        beginning with backstage work at Ranga Shankara and touring the country with productions
+        for QTP Entertainment and numerous private organisations.
+      </p>
+      <p style="margin-top:10px;">
+        My practice bridges the precision of engineering with the demands of live performance.
+        A defining strand is the lifecycle of a performance artefact: <strong>designing sets and props
+        that fold down, pack efficiently for road and air transport, survive long-term storage,
+        and reassemble on stage looking exactly as they should</strong> — with no trace of the
+        journey they have made. Getting that right requires thinking simultaneously as a designer,
+        an engineer, and a logistician.
+      </p>
+      <p style="margin-top:10px;">
+        Alongside this, I work across <strong>stage management, production management, festival management,
+        set design, and new media installation production</strong> — often several of these on the same project.
+      </p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <div class="sec-title">Education &amp; Formation</div>
+
+      <!-- Schooling + dyslexia -->
+      <div style="margin-bottom:14px;">
+        <p style="font-size:10pt; line-height:1.7; color:#444;">
+          I flunked high school and do not hold a formal educational degree. My subjects in
+          12th grade were Physics, Chemistry, Mathematics and Electronics — though I used to
+          fail in written examinations due to a learning disability, dyslexia. In practicals
+          and live experimentation, however, I always used to ace it: building and making
+          things in the real world came naturally where written tests did not.
+          I have been active in theatre since childhood — it kept me occupied and grounded,
+          and most of what I know has been learned in rehearsal halls, on stage, and on site,
+          from the time I was a child.
+        </p>
+      </div>
+
+      <!-- Swaraj University -->
+      <div style="margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:11pt; font-weight:600; color:#111;">Khoj Fellowship &nbsp;—&nbsp; Swaraj University, Udaipur</span>
+          <span style="font-size:9pt; color:#c4922a; font-weight:600;">2016 – 2017</span>
+        </div>
+        <div style="font-size:9pt; color:#888; margin-top:2px; margin-bottom:7px;">Scholarship recipient &nbsp;·&nbsp; Self-Designed Learning Programme</div>
+        <p style="font-size:10pt; line-height:1.7; color:#444;">
+          Swaraj University is a two-year experimental learning fellowship for ages 18–28,
+          built around self-designed education. Rather than a fixed curriculum, each Khoji
+          designs their own learning path around genuine curiosity — drawing from a network
+          of over 1,000 mentors across India: artisans, ecologists, designers, farmers,
+          filmmakers, activists and more. The programme emphasises self-awareness,
+          skill-building, unlearning institutional conditioning, and sustainable community living.
+          There are no degrees — the outcome is a learning portfolio and the discipline of
+          knowing how to direct your own growth. This fellowship deepened the way I approach
+          every project: with rigour, improvisation, and a willingness to go where the work demands.
+        </p>
+      </div>
+
+      <!-- Self-directed practice -->
+      <div>
+        <div style="font-size:11pt; font-weight:600; color:#111;">Self-Directed Practice &nbsp;—&nbsp; Theatre &amp; Live Performance</div>
+        <div style="font-size:9pt; color:#888; margin-top:2px; margin-bottom:7px;">On-the-job learning &nbsp;·&nbsp; Bangalore &nbsp;·&nbsp; 2015 – present</div>
+        <p style="font-size:10pt; line-height:1.7; color:#444;">
+          Active in theatre since childhood and working as an actor before stepping into
+          backstage and production work. Everything in this practice — rigging, set construction,
+          production logistics, 3D modelling, installation fabrication — has been learned
+          directly on the job, in rehearsal rooms, on tour and on site.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="sec-title">Work Experience</div>
+      <div class="exp-list">
+        <div class="exp-item"><div class="exp-year">2026</div><div><span class="exp-role">Installation Artist</span> <span class="exp-org">— Sixth Sense Festival</span></div></div>
+        <div class="exp-item"><div class="exp-year">2025</div><div><span class="exp-role">Auditorium Designer</span> <span class="exp-org">— Prestige Centre for Performing Arts, Bangalore</span></div></div>
+        <div class="exp-item"><div class="exp-year">2025</div><div><span class="exp-role">Auditorium Designer</span> <span class="exp-org">— Idagunji Mahaganapati Yakshagana Mandali</span></div></div>
+        <div class="exp-item"><div class="exp-year">2024</div><div><span class="exp-role">Installation Artist</span> <span class="exp-org">— Echoes of The Earth, India's Leading Sustainable Arts Festival</span></div></div>
+        <div class="exp-item"><div class="exp-year">2024</div><div><span class="exp-role">Line Producer</span> <span class="exp-org">— Lost in Blr Tech Art Festival, Bangalore</span></div></div>
+        <div class="exp-item"><div class="exp-year">2024</div><div><span class="exp-role">Residency Mentor — Production Design</span> <span class="exp-org">— Circle 3 Residency, Sensistan / Bangalore Creative Circus</span></div></div>
+        <div class="exp-item"><div class="exp-year">2023</div><div><span class="exp-role">Technical Executive</span> <span class="exp-org">— Future Fantastic AI Art Festival</span></div></div>
+        <div class="exp-item"><div class="exp-year">2022</div><div><span class="exp-role">Stage / Residency Manager</span> <span class="exp-org">— Bliss Circus, Goa</span></div></div>
+        <div class="exp-item"><div class="exp-year">2021</div><div><span class="exp-role">Programming Consultant</span> <span class="exp-org">— Prabath Auditoriums</span></div></div>
+        <div class="exp-item"><div class="exp-year">2018–20</div><div><span class="exp-role">Stage Manager</span> <span class="exp-org">— QTP Entertainment Pvt. Ltd, Mumbai</span></div></div>
+        <div class="exp-item"><div class="exp-year">2017–18</div><div><span class="exp-role">Production / Stage Manager</span> <span class="exp-org">— Ranga Shankara Repertory, Bangalore</span></div></div>
+        <div class="exp-item"><div class="exp-year">2015–17</div><div><span class="exp-role">Freelance Stage Manager</span> <span class="exp-org">— Bangalore</span></div></div>
+      </div>
+    </div>
+
+    <!-- CREDITS -->
+    <div class="section">
+      <div class="sec-title">Major Credits</div>
+
+      <!-- Theatre -->
+      <div style="margin-bottom:8px;">
+        <div style="font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:6px;">Theatre Productions</div>
+        <table>
+          <thead><tr><th>Production</th><th>Role</th><th>Director</th><th>Company</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ronak &amp; Jessie</strong></td><td>Technical Coordinator</td><td>Feroz Abbas Khan</td><td>BookMyShow Live</td></tr>
+            <tr><td><strong>Every Brilliant Thing</strong></td><td>Stage Manager</td><td>Quasar Thakore Padamsee</td><td>QTP India</td></tr>
+            <tr><td><strong>Pink Saree Revolution</strong></td><td>Stage Manager</td><td>Suba Das</td><td>QTP / NCPA / Curve Theatre UK</td></tr>
+            <tr><td><strong>Beediyolag ondu Maneya madi</strong></td><td>Stage Mgr / Sound Op</td><td>Mohit Thakkar</td><td>RangaShankara</td></tr>
+            <tr><td><strong>Mulla 2.0</strong></td><td>Production Manager</td><td>Vivek Madan</td><td>RangaShankara</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Festivals -->
+      <div style="margin-bottom:8px;">
+        <div style="font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:6px;">Festivals</div>
+        <table>
+          <thead><tr><th>Festival</th><th>Role</th><th>Organisation</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Tata Literature Live! 2018 &amp; 2019</strong></td><td>Head of Stage / Venue Manager, NCPA</td><td>QTP India</td></tr>
+            <tr><td><strong>AHA! Int'l Children's Festival '19, Hyderabad</strong></td><td>Festival Coordinator / Head of Stage</td><td>Saptaparni &amp; RangaShankara</td></tr>
+            <tr><td><strong>Thespo 20, 2019</strong></td><td>Senior Stage Manager</td><td>Thespo</td></tr>
+            <tr><td><strong>AHA! Theatre Festival 2018, Bangalore</strong></td><td>Decor &amp; Installation Coordinator</td><td>RangaShankara</td></tr>
+            <tr><td><strong>Future Fentastic AI Art Festival</strong></td><td>Production Manager</td><td>Be Fentastic</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Residencies -->
+      <div style="margin-bottom:8px;">
+        <div style="font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:6px;">Residencies</div>
+        <table>
+          <thead><tr><th>Project</th><th>Role</th><th>Organisation</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Circle 3 Residency (2024)</strong></td><td>Residency Mentor — Production Design for Installations</td><td>Sensistan</td></tr>
+            <tr><td><strong>Festivals of the Future, Guwahati (2019)</strong></td><td>Selected Participant</td><td>British Council</td></tr>
+            <tr><td><strong>35 Hours With Tim Supple</strong></td><td>Production Manager</td><td>QTP / DashTransnational</td></tr>
+            <tr><td><strong>Making Theatre Director's Workshop 2018</strong></td><td>Production Manager / Coordinator</td><td>Ranga Shankara</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Installation Projects -->
+      <div>
+        <div style="font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:6px;">Installation Projects</div>
+        <table>
+          <thead><tr><th>Project</th><th>Role</th><th>Venue / Organisation</th><th>Year</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Parsec, Whitefield</strong></td><td>Installation Artist</td><td>Param Foundation</td><td>2026</td></tr>
+            <tr><td><strong>Sixth Sense Festival</strong></td><td>Installation Artist</td><td>—</td><td>2026</td></tr>
+            <tr><td><strong>Echoes of Earth</strong></td><td>Installation Artist</td><td>—</td><td>2024</td></tr>
+            <tr><td><strong>Lost in Bangalore</strong></td><td>Line Producer</td><td>Bangalore Creative Circus</td><td>2024</td></tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="sec-title">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <div class="skill-lbl">Technical</div>
+          <div class="skill-val">Stage Design &nbsp;·&nbsp; Set Design &nbsp;·&nbsp; Aerial Rigging &nbsp;·&nbsp; 3D Modelling &nbsp;·&nbsp; Carpentry &nbsp;·&nbsp; Upcycling</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-lbl">Software</div>
+          <div class="skill-val">Shaper 3D &nbsp;·&nbsp; Adobe Premiere Pro &nbsp;·&nbsp; DaVinci Resolve &nbsp;·&nbsp; MS Office</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-lbl">Languages</div>
+          <div class="skill-val">English &nbsp;·&nbsp; Hindi &nbsp;·&nbsp; Kannada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERENCES -->
+    <div class="section">
+      <div class="sec-title">References</div>
+      <div class="refs-grid">
+        <div>
+          <div class="ref-name">Quasar Thakore Padamsee</div>
+          <div class="ref-role">Artistic Director, QTP</div>
+          <div class="ref-email">Quasar@qtp.in</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+</body>
+</html>

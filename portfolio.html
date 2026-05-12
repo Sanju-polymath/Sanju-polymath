@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sanjay Bharadwaj — Visual Portfolio</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #1a1a1a;
+  }
+
+  /* ── Every page is exactly A4 ── */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    page-break-after: always;
+    position: relative;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: avoid; break-after: avoid; }
+
+  /* ══════════════════════════════
+     COVER PAGE
+  ══════════════════════════════ */
+  .cover {
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 44px 52px;
+  }
+  .cover-eyebrow {
+    font-size: 8pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #c4922a;
+    margin-bottom: 14px;
+  }
+  .cover-name {
+    font-size: 42pt;
+    font-weight: 200;
+    color: #fff;
+    letter-spacing: 0.03em;
+    line-height: 0.95;
+  }
+  .cover-name strong { font-weight: 700; }
+  .cover-sub {
+    font-size: 10pt;
+    color: #aaa;
+    margin-top: 16px;
+    letter-spacing: 0.06em;
+  }
+  .cover-rule {
+    width: 48px;
+    height: 2px;
+    background: #c4922a;
+    margin: 20px 0 16px;
+  }
+  .cover-contact {
+    font-size: 8pt;
+    color: #888;
+    letter-spacing: 0.1em;
+  }
+
+  /* ══════════════════════════════
+     ABOUT PAGE
+  ══════════════════════════════ */
+  .about-page {
+    display: grid;
+    grid-template-columns: 80mm 130mm;
+  }
+  .about-photo-col {
+    background: #111;
+    height: 297mm;
+    overflow: hidden;
+  }
+  .about-photo-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .about-text-col {
+    padding: 44px 32px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .about-label {
+    font-size: 6.5pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c4922a;
+    margin-bottom: 12px;
+  }
+  .about-name {
+    font-size: 20pt;
+    font-weight: 300;
+    line-height: 1.1;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  .about-tagline {
+    font-size: 8pt;
+    color: #c4922a;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .about-bio {
+    font-size: 8.5pt;
+    line-height: 1.75;
+    color: #444;
+    margin-bottom: 28px;
+  }
+  .about-bio p + p { margin-top: 10px; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .about-stat {
+    border-left: 2px solid #c4922a;
+    padding-left: 12px;
+  }
+  .about-stat-num {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #111;
+    line-height: 1;
+  }
+  .about-stat-lbl {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #aaa;
+    margin-top: 3px;
+  }
+
+  /* ══════════════════════════════
+     PROJECT PAGES — shared
+  ══════════════════════════════ */
+  .proj-header {
+    background: #111;
+    padding: 16px 28px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .proj-title {
+    font-size: 17pt;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .proj-meta {
+    font-size: 7pt;
+    color: #c4922a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  .proj-hero {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .proj-body {
+    padding: 14px 28px 12px;
+  }
+  .proj-role-line {
+    font-size: 7.5pt;
+    color: #c4922a;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .proj-desc {
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  /* Image grids */
+  .img-grid {
+    display: grid;
+    gap: 3px;
+    padding: 10px 28px 0;
+  }
+  .img-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .img-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .img-grid-2 { grid-template-columns: 1fr 1fr; }
+  .img-grid img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Bottom strip label */
+  .proj-foot {
+    background: #111;
+    padding: 7px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .proj-foot-name { font-size: 7pt; color: #666; letter-spacing: 0.1em; }
+  .proj-foot-year { font-size: 7pt; color: #c4922a; letter-spacing: 0.12em; }
+
+  /* ══════════════════════════════
+     CREDITS PAGE
+  ══════════════════════════════ */
+  .credits-page {
+    padding: 40px 36px;
+  }
+  .credits-title {
+    font-size: 20pt;
+    font-weight: 300;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  .credits-sub {
+    font-size: 8pt;
+    color: #c4922a;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .cred-section { margin-bottom: 24px; }
+  .cred-section-title {
+    font-size: 6.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c4922a;
+    border-bottom: 0.5pt solid #c4922a;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  .cred-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  .cred-table th {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #bbb;
+    font-weight: 600;
+    text-align: left;
+    padding: 0 12px 5px 0;
+    border-bottom: 0.25pt solid #eee;
+  }
+  .cred-table td {
+    padding: 5px 12px 5px 0;
+    border-bottom: 0.25pt solid #f4f4f4;
+    vertical-align: top;
+    line-height: 1.4;
+    color: #333;
+  }
+  .cred-table td:first-child { font-weight: 600; color: #111; }
+
+  /* ══════════════════════════════
+     CONTACT / BACK PAGE
+  ══════════════════════════════ */
+  .contact-page {
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 56px;
+    position: relative;
+  }
+  .contact-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+  }
+  .contact-content { position: relative; z-index: 2; }
+  .contact-label {
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #c4922a;
+    margin-bottom: 20px;
+  }
+  .contact-name {
+    font-size: 30pt;
+    font-weight: 200;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .contact-tagline {
+    font-size: 10pt;
+    color: #aaa;
+    margin-bottom: 36px;
+    letter-spacing: 0.06em;
+  }
+  .contact-detail {
+    font-size: 11pt;
+    color: #fff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .contact-detail .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #c4922a;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════
+     SPLIT PAGE (two half-projects)
+  ══════════════════════════════ */
+  .split-page {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 297mm;
+  }
+  .half-proj { overflow: hidden; position: relative; }
+  .half-proj .proj-header { padding: 12px 22px; }
+  .half-proj .proj-title { font-size: 13pt; }
+  .half-proj .proj-body { padding: 10px 22px 8px; }
+  .half-proj .proj-desc { font-size: 7.5pt; }
+  .half-proj .img-grid { padding: 8px 22px 0; }
+  .half-divider {
+    height: 1px;
+    background: #222;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 1 · COVER
+════════════════════════════════════════════════ -->
+<div class="page cover">
+  <img class="cover-bg"
+    src="Sanjay portpholio/Circus/Circus rigging.jpg"
+    alt="" />
+  <div class="cover-content">
+    <div class="cover-eyebrow">Visual Portfolio · 2025</div>
+    <div class="cover-name">Sanjay<br><strong>Bharadwaj</strong></div>
+    <div class="cover-rule"></div>
+    <div class="cover-sub">Stage &nbsp;·&nbsp; Production &nbsp;·&nbsp; Spatial Design &nbsp;·&nbsp; New Media</div>
+    <div class="cover-contact" style="margin-top:24px;">
+      workforsanjay@gmail.com &nbsp;&nbsp;|&nbsp;&nbsp; +91 97423 93803
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 2 · ABOUT
+════════════════════════════════════════════════ -->
+<div class="page about-page">
+  <div class="about-photo-col">
+    <img src="Sanjay potrate photo.JPG" alt="Sanjay Bharadwaj" />
+  </div>
+  <div class="about-text-col">
+    <div class="about-label">About</div>
+    <div class="about-name">Sanjay<br>Bharadwaj</div>
+    <div class="about-tagline">Stage · Production · Spatial Design</div>
+    <div class="about-bio">
+      <p>
+        Ten years working where engineering meets live performance — as stage manager,
+        production manager, festival manager, set designer, and spatial designer,
+        often wearing several of these hats on the same project.
+      </p>
+      <p>
+        A defining strand of the practice is <strong>product design for performance</strong>:
+        sets, props, and technical systems designed to be built within budget,
+        toured across cities, and reused show after show.
+      </p>
+      <p>
+        Over the past two years the practice has expanded into self-taught
+        <strong>3D modelling and auditorium design</strong>, and into producing
+        <strong>new media art installations</strong> — bringing the same rigour to
+        technologically ambitious, immersive work.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">10+</div>
+        <div class="about-stat-lbl">Years in Theatre</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">350+</div>
+        <div class="about-stat-lbl">Live Performances</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">20+</div>
+        <div class="about-stat-lbl">Productions Managed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 3 · THEATRE & FESTIVAL MANAGEMENT
+════════════════════════════════════════════════ -->
+<div class="page" style="padding-bottom: 32px;">
+  <div class="proj-header">
+    <div class="proj-title">Theatre &amp; Festival Management</div>
+    <div class="proj-meta">Ranga Shankara &nbsp;·&nbsp; QTP Entertainment &nbsp;·&nbsp; British Council</div>
+  </div>
+
+  <img class="proj-hero" style="height: 82mm;"
+    src="Sanjay portpholio/Theatre plays/IMG_1810.JPG" alt="Theatre — stage" />
+
+  <div class="proj-body">
+    <div class="proj-role-line">Stage Manager · Production Manager · Festival Manager · 2015 – present</div>
+    <div class="proj-desc">
+      Beginning as a freelance stage manager in Bangalore before joining the in-house repertory
+      at Ranga Shankara — over seven productions and more than 200 shows, managing the complete
+      lifecycle of each production from rehearsal room to touring stage. Later at QTP Entertainment,
+      Mumbai, stage managing five more productions and touring extensively across the country.
+      Alongside repertory work, managed major festivals including AHA! International Children's
+      Theatre Festival, Tata Literature Live! at NCPA Mumbai (2018 &amp; 2019), and Thespo 20 —
+      one of India's leading youth theatre festivals. In 2019, selected by the British Council
+      for Festivals of the Future, Guwahati — among the youngest festival managers in India
+      to receive the programme. Over 350 live performances. Over 20 productions managed.
+    </div>
+  </div>
+
+  <div class="img-grid img-grid-3" style="height: 46mm; margin-top: 10px;">
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/Thespo.PNG" alt="" />
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/use photo.JPG" alt="" />
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/IMG_8823.JPG" alt="" />
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/IMG_1817.JPG" alt="" />
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/IMG_1810.JPG" alt="" />
+    <img style="height:46mm;" src="Sanjay portpholio/Theatre plays/IMG_1881.JPG" alt="" />
+  </div>
+
+  <div class="proj-foot">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO</span>
+    <span class="proj-foot-year">Theatre &amp; Festival Management · 2015–present</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 4 · RONAK & JESSIE
+════════════════════════════════════════════════ -->
+<div class="page" style="padding-bottom: 32px;">
+  <div class="proj-header">
+    <div class="proj-title">Ronak &amp; Jessie</div>
+    <div class="proj-meta">BookMyShow Live &nbsp;·&nbsp; Dir. Feroz Abbas Khan</div>
+  </div>
+
+  <!-- Hero -->
+  <img class="proj-hero" style="height:90mm;"
+    src="Sanjay portpholio/Ronak and jessi/IMG_1826.JPG" alt="Ronak and Jessie — stage" />
+
+  <div class="proj-body">
+    <div class="proj-role-line">Technical Coordinator · Mumbai → Delhi Tour</div>
+    <div class="proj-desc">
+      A large-scale Punjabi musical inspired by Romeo and Juliet, produced by BookMyShow Live
+      and directed by Feroz Abbas Khan. As Technical Coordinator, I managed the complete
+      transportation of the production from Mumbai to JLN Auditorium, Delhi —
+      nine container trucks of sets, trussing, lighting, costumes, and backstage infrastructure.
+      On-site I constructed independent truss systems, adapted the stage environment against
+      the venue's structural limitations, oversaw on-site refabrication where set pieces could not
+      fit the loading bays, and supervised full dismantling and return logistics after the run.
+    </div>
+  </div>
+
+  <div class="img-grid img-grid-4" style="height: 48mm;">
+    <img style="height:48mm;" src="Sanjay portpholio/Ronak and jessi/IMG_1829.JPG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Ronak and jessi/IMG_1831.JPG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Ronak and jessi/IMG_1840.JPG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Ronak and jessi/IMG_1843.JPG" alt="" />
+  </div>
+
+  <div class="proj-foot">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO</span>
+    <span class="proj-foot-year">Ronak &amp; Jessie · 2019</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 4 · BLISS CIRCUS
+════════════════════════════════════════════════ -->
+<div class="page" style="padding-bottom: 32px;">
+  <div class="proj-header">
+    <div class="proj-title">Bliss Circus</div>
+    <div class="proj-meta">Open-Air Jungle Circus &nbsp;·&nbsp; Goa</div>
+  </div>
+
+  <img class="proj-hero" style="height: 85mm;"
+    src="Sanjay portpholio/Circus/Circus rigging 2.jpg" alt="Bliss Circus — rigging" />
+
+  <div class="proj-body">
+    <div class="proj-role-line">Stage / Residency Manager · 2022</div>
+    <div class="proj-desc">
+      Residency Manager and Stage Manager at Bliss Circus, a coastal open-air jungle circus in Goa.
+      Underwent aerial rigging training and developed full maintenance routines for circus rigs,
+      wooden stages, costumes, and apparatus exposed to salt air, humidity, and monsoon.
+      Devised natural termite prevention systems for wooden structures, vacuum-sealed and
+      drum-stored costumes against mould, and inspected rigging weekly for coastal wear —
+      learning firsthand how nature, architecture, and live performance coexist.
+      Lived in a treehouse opposite the stage for the duration of the residency.
+    </div>
+  </div>
+
+  <div class="img-grid img-grid-4" style="height: 50mm; margin-top: 10px;">
+    <img style="height:50mm;" src="Sanjay portpholio/Circus/Circus house.jpeg" alt="" />
+    <img style="height:50mm;" src="video_frames/Circus_4_1_ratio_pulley_system_for_counter_weight_rigging_f1.jpg" alt="" />
+    <img style="height:50mm;" src="Sanjay portpholio/Circus/Circus storeroom for props and coustume.jpg" alt="" />
+    <img style="height:50mm;" src="video_frames/Circus_circus_stage_maintance_f2.jpg" alt="" />
+  </div>
+
+  <div class="proj-foot">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO</span>
+    <span class="proj-foot-year">Bliss Circus · 2022</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 5 · ECHOES OF EARTH
+════════════════════════════════════════════════ -->
+<div class="page" style="padding-bottom: 32px;">
+  <div class="proj-header">
+    <div class="proj-title">Echoes of Earth</div>
+    <div class="proj-meta">India's Leading Sustainable Arts &amp; Music Festival</div>
+  </div>
+
+  <img class="proj-hero" style="height: 78mm;"
+    src="video_frames/Echoes_short_list_Echoes_of_the_earth__upcycleing_waste_to_a_wasp_sculpture_3_f2.jpg"
+    alt="Echoes of Earth — wasp sculpture" />
+
+  <div class="proj-body">
+    <div class="proj-role-line">Installation Artist · Production · 2024</div>
+    <div class="proj-desc">
+      Worked as installation artist and production contributor at Echoes of Earth, one of India's
+      leading sustainable arts and music festivals. Upcycled waste materials into large-scale
+      sculpture — including a wasp sculpture built entirely from collected waste — while also
+      prototyping light installations and fabricating electronics housings for the festival's
+      new media artworks. Combined hands-on fabrication, technical problem-solving,
+      and a commitment to sustainable material practice throughout.
+    </div>
+  </div>
+
+  <div class="img-grid img-grid-4" style="height: 52mm; margin-top: 10px;">
+    <img style="height:52mm;" src="video_frames/Echoes_short_list_Echoes_of_the_earth__light_prototype__for_the_installation_f2.jpg" alt="" />
+    <img style="height:52mm;" src="video_frames/Echoes_short_list_Echoes_of_the_earth__making_electoincs_housing_box_for_the_installation_f1.jpg" alt="" />
+    <img style="height:52mm;" src="video_frames/Echoes_short_list_Echoes_of_the_earth__upcycleing_waste_to_a_wasp_sculpture_f2.jpg" alt="" />
+    <img style="height:52mm;" src="video_frames/Echoes_short_list_Echoes_of_the_earth__upcycleing_waste_to_a_wasp_sculpture_4_f1.jpg" alt="" />
+  </div>
+
+  <div class="proj-foot">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO</span>
+    <span class="proj-foot-year">Echoes of Earth · 2024</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 6 · AUDITORIUM DESIGN
+════════════════════════════════════════════════ -->
+<div class="page" style="padding-bottom: 32px;">
+  <div class="proj-header">
+    <div class="proj-title">Auditorium Design</div>
+    <div class="proj-meta">Prestige Centre for Performing Arts &nbsp;·&nbsp; Idagunji Mahaganapati Yakshagana Mandali</div>
+  </div>
+
+  <img class="proj-hero" style="height: 82mm;"
+    src="video_frames/Auditorium_design_Dome_auditorium_concept_design_f2.jpg"
+    alt="Dome auditorium concept" />
+
+  <div class="proj-body">
+    <div class="proj-role-line">Auditorium Designer · Self-Taught 3D Modelling · 2025</div>
+    <div class="proj-desc">
+      Self-taught 3D modelling entirely from a practical need: to design performance spaces
+      differently from the resource-heavy, inflexible auditoriums I had spent a decade working inside.
+      The resulting concepts explore modular seating, dynamic stage orientations, DC-powered
+      lighting infrastructure with centralised DMX control, and lightweight geodesic structures.
+      These visualisations led directly to commissions — the conversion of a banquet hall at
+      Prestige Centre for Performing Arts into a flexible black-box venue, and 3D visualisation
+      work for Idagunji Mahaganapati Yakshagana Mandali, in collaboration with Prakash Belawadi.
+    </div>
+  </div>
+
+  <div class="img-grid img-grid-4" style="height: 48mm; margin-top: 10px;">
+    <img style="height:48mm;" src="Sanjay portpholio/Auditorium design/IMG_0795.PNG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Auditorium design/IMG_0798.PNG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Auditorium design/IMG_0801.PNG" alt="" />
+    <img style="height:48mm;" src="Sanjay portpholio/Auditorium design/IMG_0804.PNG" alt="" />
+  </div>
+
+  <div class="proj-foot">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO</span>
+    <span class="proj-foot-year">Auditorium Design · 2025</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 7 · SENSISTAN + STORIES IN HALF
+════════════════════════════════════════════════ -->
+<div class="page split-page">
+
+  <!-- TOP HALF: Sensistan -->
+  <div class="half-proj">
+    <div class="proj-header">
+      <div class="proj-title">Sensistan — Circle 3 Residency</div>
+      <div class="proj-meta">New Media Art &nbsp;·&nbsp; TouchDesigner &nbsp;·&nbsp; Bangalore Creative Circus</div>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:3px; height:64mm;">
+      <img style="width:100%;height:64mm;object-fit:cover;"
+        src="video_frames/Sensistan_circle_3_residency_Circle_3_Residency_week_1__touchdesigner__projetionmapping__newmediaart_f1.jpg" alt="" />
+      <img style="width:100%;height:64mm;object-fit:cover;"
+        src="video_frames/Sensistan_circle_3_residency_Circle_3_Residency_week_1__touchdesigner__projetionmapping__newmediaart_f3.jpg" alt="" />
+      <img style="width:100%;height:64mm;object-fit:cover;"
+        src="video_frames/Sensistan_circle_3_residency_Circle_3_Residency__week_2__touchdesigner__projetionmapping__newmediaart_f2.jpg" alt="" />
+    </div>
+    <div class="proj-body" style="padding-top:8px;">
+      <div class="proj-role-line">Residency Mentor — Production Design · 2024</div>
+      <div class="proj-desc" style="font-size:7.5pt;">
+        Core team member at Circle 3 Residency (Sensistan), a new media art residency using TouchDesigner
+        and projection mapping. Mentored residents in spatial analysis, fabrication, rigging, projection placement,
+        and translating artistic concepts into physically executable installations. Co-designed the final exhibition space
+        at Bangalore Creative Circus — visitor flow, technical integration, and cohesive visual language across multiple artists' works.
+      </div>
+    </div>
+  </div>
+
+  <div class="half-divider"></div>
+
+  <!-- BOTTOM HALF: Stories in Half -->
+  <div class="half-proj">
+    <div class="proj-header">
+      <div class="proj-title">Stories in Half — Set Design</div>
+      <div class="proj-meta">Theatre Production &nbsp;·&nbsp; Loom Set Construction</div>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:3px; height:60mm;">
+      <img style="width:100%;height:60mm;object-fit:cover;"
+        src="Sanjay portpholio/Stories in half (set design)/Poster 1.webp" alt="" />
+      <img style="width:100%;height:60mm;object-fit:cover;"
+        src="Sanjay portpholio/Stories in half (set design)/Building of the loom/IMG_1297.JPG" alt="" />
+      <img style="width:100%;height:60mm;object-fit:cover;"
+        src="Sanjay portpholio/Stories in half (set design)/Building of the loom/IMG_1301.JPG" alt="" />
+      <img style="width:100%;height:60mm;object-fit:cover;"
+        src="Sanjay portpholio/Stories in half (set design)/Building of the loom/IMG_1304.JPG" alt="" />
+    </div>
+    <div class="proj-body" style="padding-top:8px;">
+      <div class="proj-role-line">Set Designer · Production · Loom Construction</div>
+      <div class="proj-desc" style="font-size:7.5pt;">
+        Set design and construction for Stories in Half — a site-specific theatrical production
+        centred on a large-scale handbuilt loom as the primary scenic element. The loom was designed,
+        fabricated, and rigged as a structural and aesthetic centrepiece, documented across the full
+        build process from raw materials to final stage configuration.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 8 · THEATRE PLAYS & CREDITS
+════════════════════════════════════════════════ -->
+<div class="page" style="display:flex; flex-direction:column;">
+
+  <!-- Photo strip at top -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3px; height:62mm; flex-shrink:0;">
+    <img style="width:100%;height:62mm;object-fit:cover;" src="Sanjay portpholio/Theatre plays/IMG_1810.JPG" alt="" />
+    <img style="width:100%;height:62mm;object-fit:cover;" src="Sanjay portpholio/Theatre plays/IMG_1817.JPG" alt="" />
+    <img style="width:100%;height:62mm;object-fit:cover;" src="Sanjay portpholio/Theatre plays/IMG_8823.JPG" alt="" />
+    <img style="width:100%;height:62mm;object-fit:cover;" src="Sanjay portpholio/Theatre plays/IMG_8840.JPG" alt="" />
+  </div>
+
+  <div class="credits-page" style="padding-top:28px; flex:1;">
+    <div class="credits-title">Selected Credits</div>
+    <div class="credits-sub">Theatre &nbsp;·&nbsp; Festival &nbsp;·&nbsp; Residency</div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+
+      <div>
+        <div class="cred-section">
+          <div class="cred-section-title">Theatre Productions</div>
+          <table class="cred-table">
+            <thead><tr><th>Production</th><th>Role</th><th>Company</th></tr></thead>
+            <tbody>
+              <tr><td>Ronak &amp; Jessie</td><td>Technical Coordinator</td><td>BookMyShow Live</td></tr>
+              <tr><td>Every Brilliant Thing</td><td>Stage Manager</td><td>QTP India</td></tr>
+              <tr><td>Pink Saree Revolution</td><td>Stage Manager</td><td>QTP / NCPA / Curve UK</td></tr>
+              <tr><td>Beediyolag ondu Maneya madi</td><td>Stage Mgr / Sound Op</td><td>RangaShankara</td></tr>
+              <tr><td>Mulla 2.0</td><td>Production Manager</td><td>RangaShankara</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cred-section">
+          <div class="cred-section-title">Residencies</div>
+          <table class="cred-table">
+            <thead><tr><th>Project</th><th>Role</th><th>Organisation</th></tr></thead>
+            <tbody>
+              <tr><td>Circle 3 Residency</td><td>Residency Mentor</td><td>Sensistan</td></tr>
+              <tr><td>35 Hours With Tim Supple</td><td>Production Manager</td><td>QTP / DashTransnational</td></tr>
+              <tr><td>Making Theatre Workshop 2018</td><td>Prod. Mgr / Coordinator</td><td>Ranga Shankara</td></tr>
+              <tr><td>Festivals of the Future 2019</td><td>Selected Participant</td><td>British Council</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="cred-section">
+          <div class="cred-section-title">Festivals</div>
+          <table class="cred-table">
+            <thead><tr><th>Festival</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td>Tata Literature Live! 2018 &amp; 2019</td><td>Head of Stage / Venue Mgr, NCPA</td></tr>
+              <tr><td>AHA! Int'l Children's Festival '19, Hyd</td><td>Festival Coordinator / Head of Stage</td></tr>
+              <tr><td>Thespo 20, 2019</td><td>Senior Stage Manager</td></tr>
+              <tr><td>AHA! Theatre Festival 2018, Blr</td><td>Decor &amp; Installation Coordinator</td></tr>
+              <tr><td>Future Fentastic AI Festival</td><td>Production Manager</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cred-section">
+          <div class="cred-section-title">Skills</div>
+          <table class="cred-table">
+            <thead><tr><th>Area</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>Technical</td><td>Stage Design · Set Design · Aerial Rigging · 3D Modelling · Carpentry · Upcycling</td></tr>
+              <tr><td>Software</td><td>Shaper 3D · Adobe Premiere Pro · DaVinci Resolve · MS Office</td></tr>
+              <tr><td>Languages</td><td>English · Hindi · Kannada</td></tr>
+              <tr><td>Education</td><td>Khoj Fellowship, Swaraj University (2016–17)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="proj-foot" style="position:static; margin-top:auto;">
+    <span class="proj-foot-name">SANJAY BHARADWAJ &nbsp;·&nbsp; VISUAL PORTFOLIO 2025</span>
+    <span class="proj-foot-year">workforsanjay@gmail.com &nbsp;·&nbsp; +91 97423 93803</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     PAGE 9 · CONTACT / BACK
+════════════════════════════════════════════════ -->
+<div class="page contact-page">
+  <img class="contact-bg"
+    src="Sanjay portpholio/Circus/Circus rigging 3.jpg" alt="" />
+  <div class="contact-content">
+    <div class="contact-label">Get in Touch</div>
+    <div class="contact-name">Sanjay Bharadwaj</div>
+    <div class="contact-tagline">
+      Stage &nbsp;·&nbsp; Production &nbsp;·&nbsp; Spatial Design &nbsp;·&nbsp; New Media
+    </div>
+    <div class="contact-detail"><div class="dot"></div>workforsanjay@gmail.com</div>
+    <div class="contact-detail"><div class="dot"></div>+91 97423 93803</div>
+    <div class="contact-detail"><div class="dot"></div>Bangalore, India</div>
+    <div style="margin-top:36px; font-size:7.5pt; color:#555; letter-spacing:0.12em; text-transform:uppercase;">
+      References available upon request &nbsp;·&nbsp; Quasar Thakore Padamsee · Arundathi Nag
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
